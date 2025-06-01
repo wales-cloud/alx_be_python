@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
 """
-Pattern Drawing with Nested Loops
+Personal Daily Reminder
 """
 
-try:
-    size = int(input("Enter the size of the pattern: "))
+# Prompt for input
+task = input("Enter your task: ").strip()
+priority = input("Priority (high/medium/low): ").strip().lower()
+time_bound = input("Is it time-bound? (yes/no): ").strip().lower()
 
-    if size <= 0:
-        print("Please enter a positive integer.")
-    else:
-        row = 0
-        while row < size:
-            for _ in range(size):
-                print("*", end="")
-            print()  # Move to the next line after each row
-            row += 1
+# Match case for priority
+match priority:
+    case "high":
+        message = f"'{task}' is a high priority task"
+    case "medium":
+        message = f"'{task}' is a medium priority task"
+    case "low":
+        message = f"'{task}' is a low priority task"
+    case _:
+        message = f"'{task}' has an unknown priority level"
 
-except ValueError:
-    print("Invalid input. Please enter a positive integer.")
+# Add time sensitivity
+if time_bound == "yes":
+    message += " that requires immediate attention today!"
+else:
+    message += ". Consider completing it when you have free time."
+
+# ✅ Final output matching ALX checker requirement
+print(f"Reminder: {message}")
